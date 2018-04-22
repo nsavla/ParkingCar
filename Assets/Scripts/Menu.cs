@@ -20,6 +20,17 @@ public class Menu : MonoBehaviour {
 		SceneManager.LoadScene (1);
 	}
 
+	public void BtnPlayLevel2()
+	{
+		SceneManager.LoadScene (2);
+	}
+
+
+	public void BtnPlayLevel3()
+	{
+		SceneManager.LoadScene (3);
+	}
+
 
 	public void BtnQuit()
 	{

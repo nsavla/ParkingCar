@@ -51,9 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Accelerometer.cs" />
-     <Compile Include="Assets\GameOverScript.cs" />
-     <Compile Include="Assets\Menu.cs" />
+     <Compile Include="Assets\NextLevel.cs" />
+     <Compile Include="Assets\Scripts\Accelerometer.cs" />
+     <Compile Include="Assets\Scripts\DontDestroyOnLoad.cs" />
+     <Compile Include="Assets\Scripts\GameOverScript.cs" />
+     <Compile Include="Assets\Scripts\Menu.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

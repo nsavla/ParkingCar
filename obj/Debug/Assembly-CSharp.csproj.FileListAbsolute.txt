@@ -29,3 +29,4 @@ D:\Unity\TestAccelerometer\Temp\bin\Debug\UnityEngine.Analytics.xml
 D:\Unity\TestAccelerometer\Temp\bin\Debug\UnityEngine.HoloLens.xml
 D:\Unity\TestAccelerometer\obj\Debug\Assembly-CSharp.dll
 D:\Unity\TestAccelerometer\obj\Debug\Assembly-CSharp.pdb
+D:\Unity\TestAccelerometer\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache

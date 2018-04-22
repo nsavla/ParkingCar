@@ -13,23 +13,26 @@ public class Accelerometer : MonoBehaviour {
 	[SerializeField] private Sprite CarMoveDown;
 	[SerializeField] private Sprite CarMoveLeft;
 	[SerializeField] private Sprite CarMoveRight;
+	[SerializeField] private ParticleSystem CrashParticles;
+	[SerializeField] private AudioSource explosion;
 
 	// Use this for initialization
 	void Start () {
 		myRigidBody = GetComponent<Rigidbody2D> ();
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		CalibrateAccelerometer ();
-
-
+		CrashParticles.Stop ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+
+
 
 		Vector3 accelerationRaw = Input.acceleration;
 		Vector3 acceleration = FixAcceleration (accelerationRaw);
 		Vector3 movement = new Vector3 (acceleration.x, acceleration.y , 0.0f);
-		Debug.Log ("Acceleration = " + acceleration.x + " and " + acceleration.y );
+		//Debug.Log ("Acceleration = " + acceleration.x + " and " + acceleration.y );
 
 		if ((Mathf.Abs (acceleration.x) - Mathf.Abs (acceleration.y)) > 0.1f) {
 			if (acceleration.x > 0) {
@@ -64,6 +67,30 @@ public class Accelerometer : MonoBehaviour {
 	{
 		Vector3 fixedAcceleration = calibrationQuaternion * acceleration;
 		return fixedAcceleration;
+	}
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.collider.tag == "Goal")
+			return;
+
+		foreach (ContactPoint2D contact in collision.contacts) {
+			CrashParticles.Play ();
+			GameObject.FindGameObjectWithTag("MainCamera").transform.localPosition = new Vector3 (
+				GameObject.FindGameObjectWithTag("MainCamera").transform.localPosition.y + Random.Range(-0.1f,0.1f),
+				GameObject.FindGameObjectWithTag("MainCamera").transform.localPosition.y + Random.Range(-0.1f,0.1f),
+				GameObject.FindGameObjectWithTag("MainCamera").transform.localPosition.z);
+			explosion.Play ();
+			StartCoroutine (ParticleWait());
+			break;
+		}
+	}
+
+	IEnumerator ParticleWait()
+	{
+		yield return new WaitForSeconds (0.1f);
+		CrashParticles.Stop ();
+		GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition = new Vector3 (0, 1, -10);
 	}
 		
 }

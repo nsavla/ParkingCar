@@ -818,7 +818,7 @@ MonoBehaviour:
   Timer: {fileID: 968782749}
   GameOverText: {fileID: 1301851412}
   carSprite: {fileID: 21300024, guid: 84c580a856788864fab5b761da42ca43, type: 3}
-  NextLevelButton: {fileID: 0}
+  NextLevelButton: {fileID: 977890585}
 --- !u!1 &231398062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,7 +4240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &977890584
 RectTransform:
   m_ObjectHideFlags: 0

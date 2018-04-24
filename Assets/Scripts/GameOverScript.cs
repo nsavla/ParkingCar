@@ -31,26 +31,33 @@ public class GameOverScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		int TimeScore = TimerValue - (int)(Time.time);
-		Timer.text = TimeScore.ToString ();
-		if (TimeScore <= 0 &&  !isGameOver) {
-			Timer.text = "0";
-			GameOverText.text = "Time Out";
-			GameOverPanel.SetActive (true);
+		if (!isGameOver) {
+			int TimeScore = TimerValue - (int)(Time.time);
+			Debug.Log ("Timescore = " + TimerValue + " And gameover: " + isGameOver + " and " + Time.time);
+			Timer.text = TimeScore <= 0 ? "0" : TimeScore.ToString ();
+			if (TimeScore <= 0) {
+				EndGame ("Time Out");
+				NextLevelButton.gameObject.SetActive (false);
+			}
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player") {
-			player.GetComponent<SpriteRenderer> ().enabled = false;
-			player.SetActive (false);
-			GameOverText.text = "YOU WIN";
-			GameOverPanel.SetActive (true);
-			isGameOver = true;
-			NextLevelButton.enabled = true;
-			GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition = new Vector3 (0, 1, -10);
+			EndGame ("YOU WIN");
+			NextLevelButton.gameObject.SetActive (true);
 		}
+	}
+
+	public void EndGame(string Message)
+	{
+		GameOverText.text = Message;
+		GameOverPanel.SetActive (true);
+		isGameOver = true;
+		player.GetComponent<SpriteRenderer> ().enabled = false;
+		player.SetActive (false);
+		GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition = new Vector3 (0, 1, -10);
 	}
 
 	public void MainMenu()
@@ -67,7 +74,7 @@ public class GameOverScript : MonoBehaviour {
 			player.GetComponent<SpriteRenderer> ().sprite = carSprite;
 		}
 		
-		isGameOver = true;
+		isGameOver = false;
 		GameOverPanel.SetActive (false);
 		TimerValue = (int)(Time.time + 15);
 	}

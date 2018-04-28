@@ -134,3 +134,5 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 e69203a1e8e4979def125e195146edd7 Assembly-CSharp.dll:.Accelerometer
 0de24ca782a172e66cbee1a02729bd8a Assembly-CSharp.dll:.GameOverScript
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SwipeManager
+c9e62daad26922fac6b61b434e669e7f Assembly-CSharp.dll:.HandleSwipeLevelSelect

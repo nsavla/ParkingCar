@@ -17,6 +17,7 @@ public class NextLevel : MonoBehaviour {
 
 	public void LoadNextLevel()
 	{
+		Debug.Log ("Build Index =" + SceneManager.GetActiveScene().buildIndex );
 		if(SceneManager.GetActiveScene().buildIndex != 3)
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		else 

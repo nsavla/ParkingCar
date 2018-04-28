@@ -26,14 +26,14 @@ public class GameOverScript : MonoBehaviour {
 		//player = GameObject.FindGameObjectWithTag ("Player");
 		GameOverPanel.SetActive (false);
 		TimerValue = (int)(Time.time + 15);
-		NextLevelButton.enabled = false;
+		NextLevelButton.gameObject.SetActive (false);
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (!isGameOver) {
 			int TimeScore = TimerValue - (int)(Time.time);
-			Debug.Log ("Timescore = " + TimerValue + " And gameover: " + isGameOver + " and " + Time.time);
+			//Debug.Log ("Timescore = " + TimerValue + " And gameover: " + isGameOver + " and " + Time.time);
 			Timer.text = TimeScore <= 0 ? "0" : TimeScore.ToString ();
 			if (TimeScore <= 0) {
 				EndGame ("Time Out");

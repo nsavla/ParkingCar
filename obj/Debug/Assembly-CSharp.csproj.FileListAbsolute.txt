@@ -27,6 +27,6 @@ D:\Unity\TestAccelerometer\Temp\bin\Debug\nunit.framework.xml
 D:\Unity\TestAccelerometer\Temp\bin\Debug\UnityEngine.Timeline.xml
 D:\Unity\TestAccelerometer\Temp\bin\Debug\UnityEngine.Analytics.xml
 D:\Unity\TestAccelerometer\Temp\bin\Debug\UnityEngine.HoloLens.xml
+D:\Unity\TestAccelerometer\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 D:\Unity\TestAccelerometer\obj\Debug\Assembly-CSharp.dll
 D:\Unity\TestAccelerometer\obj\Debug\Assembly-CSharp.pdb
-D:\Unity\TestAccelerometer\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache

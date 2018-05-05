@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class Menu : MonoBehaviour {
-	
+
+	public AudioMixer audioMixer;
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -36,4 +39,10 @@ public class Menu : MonoBehaviour {
 	{
 		Application.Quit ();
 	}
+
+	public void setVolume(float volume) 
+	{
+		audioMixer.SetFloat ("volume", volume);
+	}
+		
 }

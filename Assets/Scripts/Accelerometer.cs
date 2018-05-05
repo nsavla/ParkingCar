@@ -16,9 +16,11 @@ public class Accelerometer : MonoBehaviour {
 	[SerializeField] private ParticleSystem CrashParticles;
 	[SerializeField] private AudioSource explosion;
 	[SerializeField] private GameOverScript gameOverScript;
+	[SerializeField] private Animator LoadAnimator;
 
 	// Use this for initialization
-	void Start () {
+	void Start () {		
+		LoadAnimator.Play("LevelLoadPanelAnim");
 		myRigidBody = GetComponent<Rigidbody2D> ();
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		CalibrateAccelerometer ();

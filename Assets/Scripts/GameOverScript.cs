@@ -18,6 +18,9 @@ public class GameOverScript : MonoBehaviour {
 	private Sprite carSprite;
 	[SerializeField]
 	private Button NextLevelButton ;
+	[SerializeField]
+	private List<GameObject> HeartImages;
+	private int HeartImagesLength;
 	private int TimerValue;
 	private bool isGameOver = false;
 
@@ -26,14 +29,20 @@ public class GameOverScript : MonoBehaviour {
 		//player = GameObject.FindGameObjectWithTag ("Player");
 		GameOverPanel.SetActive (false);
 		TimerValue = (int)(Time.time + 15);
+		HeartImagesLength = HeartImages.Count;
 		NextLevelButton.gameObject.SetActive (false);
+		//Debug.Log ("NextLevelButton = " + NextLevelButton);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if (player.activeSelf == false && SceneManager.GetActiveScene().buildIndex != 4) {
+			TimerValue = (int)(Time.time + 15);	
+		}
+
 		if (!isGameOver) {
 			int TimeScore = TimerValue - (int)(Time.time);
-			//Debug.Log ("Timescore = " + TimerValue + " And gameover: " + isGameOver + " and " + Time.time);
+			//Debug.Log ("Timevalue = " + TimerValue + " And gameover: " + isGameOver + " and " + Time.time);
 			Timer.text = TimeScore <= 0 ? "0" : TimeScore.ToString ();
 			if (TimeScore <= 0) {
 				EndGame ("Time Out");
@@ -52,12 +61,13 @@ public class GameOverScript : MonoBehaviour {
 
 	public void EndGame(string Message)
 	{
+		GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition = new Vector3 (0, 1, -10);
 		GameOverText.text = Message;
 		GameOverPanel.SetActive (true);
 		isGameOver = true;
 		player.GetComponent<SpriteRenderer> ().enabled = false;
 		player.SetActive (false);
-		GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition = new Vector3 (0, 1, -10);
+
 	}
 
 	public void MainMenu()
@@ -76,7 +86,36 @@ public class GameOverScript : MonoBehaviour {
 		
 		isGameOver = false;
 		GameOverPanel.SetActive (false);
+		foreach (GameObject Heart in HeartImages)
+			Heart.SetActive (true);
+		HeartImagesLength = HeartImages.Count;
 		TimerValue = (int)(Time.time + 15);
+
+	}
+
+	public void TakeCrashDamage()
+	{
+		if (HeartImagesLength > 0) {
+			(HeartImages [HeartImagesLength - 1]).SetActive (false);
+			HeartImagesLength = HeartImagesLength - 1;
+		} 
+
+		if( HeartImagesLength == 0)
+		{
+			StartCoroutine (ParticleWait());
+		}
+	}
+
+	IEnumerator ParticleWait()
+	{
+		yield return new WaitForSeconds (0.1f);
+		EndGame ("NO LIVES LEFT");
+		NextLevelButton.gameObject.SetActive (false);
+	}
+
+	public void SetHeartImageLength()
+	{
+		HeartImagesLength = HeartImages.Count;
 	}
 
 }

@@ -26,6 +26,11 @@ public class Menu : MonoBehaviour {
 		SceneManager.LoadScene (3);
 	}
 
+	public void BtnPlayLevel4()
+	{
+		SceneManager.LoadScene (4);
+	}
+
 
 	public void BtnQuit()
 	{

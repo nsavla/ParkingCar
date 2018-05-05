@@ -15,6 +15,7 @@ public class Accelerometer : MonoBehaviour {
 	[SerializeField] private Sprite CarMoveRight;
 	[SerializeField] private ParticleSystem CrashParticles;
 	[SerializeField] private AudioSource explosion;
+	[SerializeField] private GameOverScript gameOverScript;
 
 	// Use this for initialization
 	void Start () {
@@ -73,6 +74,9 @@ public class Accelerometer : MonoBehaviour {
 	{
 		if (collision.collider.tag == "Goal")
 			return;
+
+
+		gameOverScript.TakeCrashDamage ();
 
 		foreach (ContactPoint2D contact in collision.contacts) {
 			CrashParticles.Play ();
